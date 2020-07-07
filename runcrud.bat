@@ -5,8 +5,8 @@ echo GRADLEW BUILD has errors - breaking work
 goto fail
 
 :rename
-del build\libs\crud.war
-ren build\libs\tasks-0.0.1-SNAPSHOT.war crud.war
+del build\libs\crud.jar
+ren build\libs\tasks-0.0.1-SNAPSHOT.jar crud.jar
 if "%ERRORLEVEL%" == "0" goto stoptomcat
 echo Cannot rename file
 goto fail
