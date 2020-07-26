@@ -31,7 +31,7 @@ public class SimpleEmailService {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo(mail.getMailTo());
 
-            if(!(mail.getToCc().isEmpty())) {
+            if(mail.getToCc() != null && !(mail.getToCc().isEmpty())) {
                 mailMessage.setCc(mail.getToCc());
                 LOGGER.info("Email send to CC");
             } else {
