@@ -100,4 +100,30 @@ public class MapperTestSuite {
         assertEquals(3,taskDtoList.size());
         assertTrue(taskDtoList.get(2).getTitle().contains("Test3"));
     }
+
+    @Test
+    public void mapToCardDtoTest(){
+        //Given
+        TrelloCard trelloCard = new TrelloCard("TestCard", "TestDescription","Pos", "1");
+
+        //When
+        TrelloCardDto trelloCardDto = trelloMapper.mapToCardDto(trelloCard);
+
+        //Then
+        assertNotNull(trelloCardDto);
+        assertTrue(trelloCardDto.getName().contains("TestCard"));
+    }
+
+    @Test
+    public void mapToCardTest(){
+        //Given
+        TrelloCardDto trelloCardDto = new TrelloCardDto("TestCard", "TestDescription","Pos", "1");
+
+        //When
+        TrelloCard trelloCard = trelloMapper.mapToCard(trelloCardDto);
+
+        //Then
+        assertNotNull(trelloCard);
+        assertTrue(trelloCard.getName().contains("TestCard"));
+    }
 }
