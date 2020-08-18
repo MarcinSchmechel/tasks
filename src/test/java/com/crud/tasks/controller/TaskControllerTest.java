@@ -5,6 +5,7 @@ import com.crud.tasks.domain.TaskDto;
 import com.crud.tasks.mapper.TaskMapper;
 import com.crud.tasks.service.DbService;
 import com.google.gson.Gson;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentMatchers;
@@ -130,15 +131,15 @@ public class TaskControllerTest {
     }
 
     @Test
-    public void getTasksByIdTaskNotFoundExceptionTest() throws Exception{
+    public void getTasksByIdTaskNotFoundExceptionTest(){
         //Given
         when(service.getTaskById(2L)).thenReturn(Optional.empty());
 
-        mockMvc.perform(get("/v1/task/getTask?taskId=2"));
-
-//        mockMvc.perform(get("/v1/task/getTask?taskId=1"));
-//                .andExpect(result -> assertTrue(result.getResolvedException() instanceof TaskNotFoundException));
-//                .andExpect(status().is(500));
+        try {
+            mockMvc.perform(get("/v1/task/getTask?taskId=2"));
+        } catch (Exception e) {
+            Assert.assertTrue(e.getCause() instanceof TaskNotFoundException);
+        }
     }
 
 }
